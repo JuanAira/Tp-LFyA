@@ -2,11 +2,6 @@
 
 """Funcion para descomprimir la cadena"""
 
-def descomprimir(cadena):
-    ListaCadena = []
-    ListaCadena = cadena.split("\n")
-    return (ListaCadena)
-
 """Funcion para determinar si es g3"""
 
 """prueba = ("A:b A\nA:a\nA:A B c\nA:lambda\nB:b")"""
@@ -75,14 +70,14 @@ def DeterminarGrado3(cadena):
         ExpresionErronea= error[0] + "->" + error[1]
         return (ExpresionErronea,texto)
 
-def verificarSiEsG3(Lista):
-    texto = ""
-
-
-    return texto
 
 
 
+
+
+print (DeterminarGrado3(("A:b A\nA:a\nA:A B c\nA:lambda\nB:b")))
+
+bandera = 0
 """Funcion para determinar si es g2"""
 
 def verificarSiEsG2(Lista):
