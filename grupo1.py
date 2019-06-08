@@ -244,121 +244,7 @@ def clasificar_gramatica(cadenaString):
 """"""
 
 
-def apilar(simbolo,pila):
-    """ Agrega el elemento x a la pila. """
-    pila.append(simbolo)
-
-
-def desapilar(pila):
-    """ Devuelve el elemento tope y lo elimina de la pila.
-        Si la pila está vacía levanta una excepción. """
-    try:
-        return pila.pop()
-    except IndexError:
-        raise ValueError("La pila está vacía")
-
-
-def es_vacia(pila):
-    """ Devuelve True si la lista está vacía, False si no. """
-    return pila == []
-
-
-def descomprimirDiccionario(diccionario):
-    listaRetornar = []
-    lista = []
-    for x in diccionario:
-        lista.append(x)
-        var = diccionario[x]
-        for transiciones in var:
-            lista.append(transiciones)
-        listaRetornar.append(lista)
-        lista = []
-
-    return listaRetornar
-
-
-def validar_cadena(cadena, lista):
-    pila = []
-    pila.append('Z0')
-    estadosAceptación = lista
-
-    #listaEstados_Transiciones = descomprimirDiccionario(
-    #   {'a': [('(', 'Z0', ['(', 'Z0'], 'a'), ('(', '(', ['(', '('], 'a'), (')', '(', [''], 'b')],
-    #   'b': [(')', '(', [''], 'b'), ('$', 'Z0', ['Z0'], 'b')]})
-
-    listaEstados_Transiciones = descomprimirDiccionario(
-        {'a': [('a', 'Z0', ['a', 'Z0'], 'a'), ('a', 'a', ['a', 'a','a'], 'a'), ('b', 'Z0', ['b','Z0'], 'b'),('b','a',['a','a','a'],'c')],
-         'b': [('$', 'Z0', [''], 'b'), ('c', 'b', [''], 'b')],
-         'c':[('$', 'Z0', [''], 'c'), ('c', 'a', [''], 'c')]})
-
-    resultado = True
-
-    listaTransiciones= listaEstados_Transiciones[0]
-    estado= listaTransiciones[0]
-
-    for entrada in cadena:
-        if len(pila)==1 and pila[0]=='Z0' and entrada=='$':
-            desapilar(pila)
-            if estado in estadosAceptación:
-                resultado = True
-            else:
-                resultado=False
-            break
-
-        indice=1
-        listaTrancionesEncontradasParaLaEntrada= []
-
-        while indice <= (len(listaTransiciones)-1):
-            transicion = listaTransiciones[indice]
-            if transicion[0] == entrada:
-                listaTrancionesEncontradasParaLaEntrada.append(transicion)
-            indice= indice + 1
-
-        if len(listaTrancionesEncontradasParaLaEntrada)==0:
-            resultado = False
-            break
-        else:
-            aplicarTransicion=[]
-            ok=True
-
-            for transicionEncontrada in listaTrancionesEncontradasParaLaEntrada:
-                if ok:
-                    if len(pila) ==1 and pila[0]=='Z0' and transicionEncontrada[1]=='Z0':
-                        aplicarTransicion=transicionEncontrada
-                        ok=False
-                    else:
-                        aplicarTransicion=transicionEncontrada
-
-            if len(aplicarTransicion[2])==0 or aplicarTransicion[2]=='lambda' or aplicarTransicion[2]=='' or aplicarTransicion[2]=="" or aplicarTransicion[2]==[''] or aplicarTransicion[2]== [""]:
-                if len(pila)!=1:
-                    desapilar(pila)
-                    estado= aplicarTransicion[3]
-                else:
-                    resultado=False
-                    break
-
-            else:
-                verificar=desapilar(pila)
-                if verificar=='Z0' and 'Z0'in aplicarTransicion[2]:
-                    apilar('Z0',pila)
-                    cont =0
-                    sacar=0
-                    for zo in aplicarTransicion[2]:
-                        if zo=='Z0':
-                            sacar=cont
-                        cont = cont + 1
-                    aplicarTransicion[2].pop(sacar)
-                for i in aplicarTransicion[2]:
-                    apilar(i,pila)
-                estado= aplicarTransicion[3]
-                for proximaLista in listaEstados_Transiciones:
-                    if proximaLista[0]==estado:
-                        listaTransiciones=proximaLista
-
-
-    return  resultado
-
-s=validar_cadena('aaabccccccc$',['b','c'])
+#s=validar_cadena('((()))$',['b'])
 
 
 class AutomataPila:
@@ -370,49 +256,132 @@ class AutomataPila:
     """
 
     def __init__(self, estados, estados_aceptacion):
-        """ Constructor de la clase.
+        # Constructor de la clase.
 
-        Args
-        ----
-        estados: dict
-            Diccionario de estados que especifica en las claves los nombres de los
-            estados y como valores una lista de transiciones salientes de dicho estado.
-            Cada transición se compone de: (s,p,a,e) siendo
-            s -> símbolo que se consume de la entrada para aplicar la transición.
-            p -> símbolo que se consume del tope de la pila para aplicar la transición.
-            a -> lista de símbolo/s que se apila una vez aplicada la transición.
-            e -> estado de destino.
-
-            Ejemplo:
-            {'a': [
-                   ( '(' , 'Z0', ['Z0'], 'a')  ,
-                   ( '(' , '(' , ['('  , '(' ] , 'a') ,
-                   ( ')' , '(' , ['']  , 'b')
-                   ],
-             'b': [
-                   (')', '(', [''], 'b'),
-                   ('$', 'Z0', ['Z0'], 'b')
-                   ]
-            }
-
-        estados_aceptacion: array-like
-            Estados que admiten fin de cadena.
-
-            Ejemplo:
-            ['b']
-        """
-
-
-
-        self.estados = []
-        self.estado_actual = None
+        self.diccionario=estados
+        self.estados = estados_aceptacion
         self.cadena_restante = ''
 
-        self.pila=[]
+
+    def apilar(self,simbolo, pila):
+        """ Agrega el elemento x a la pila. """
+        pila.append(simbolo)
+
+    def desapilar(self,pila):
+        """ Devuelve el elemento tope y lo elimina de la pila.
+            Si la pila está vacía levanta una excepción. """
+        try:
+            return pila.pop()
+        except IndexError:
+            raise ValueError("La pila está vacía")
+
+    def descomprimirDiccionario(self,diccionario):
+        listaRetornar = []
+        lista = []
+        for x in diccionario:
+            lista.append(x)
+            var = diccionario[x]
+            for transiciones in var:
+                lista.append(transiciones)
+            listaRetornar.append(lista)
+            lista = []
+
+        return listaRetornar
 
 
+    def validar_cadena(self,cadena):
+        pila = []
+        pila.append('Z0')
+        estadosAceptación = self.estados
 
+        listaEstados_Transiciones = self.descomprimirDiccionario(self.diccionario)
 
+        # Automata prueba 1
+        #({'a': [('(', 'Z0', ['(', 'Z0'], 'a'), ('(', '(', ['(', '('], 'a'), (')', '(', [''], 'b')],
+        #'b': [(')', '(', [''], 'b'), ('$', 'Z0', ['Z0'], 'b')]})
 
+        # Automata prueba 2
+        # ({'a': [('a', 'Z0', ['a', 'Z0'], 'a'), ('a', 'a', ['a', 'a','a'], 'a'), ('b', 'Z0', ['b','Z0'], 'b'),('b','a',['a','a','a'],'c')],
+        #   'b': [('$', 'Z0', [''], 'b'), ('c', 'b', [''], 'b')],
+        #   'c':[('$', 'Z0', [''], 'c'), ('c', 'a', [''], 'c')]})
 
+        resultado = True
 
+        listaTransiciones = listaEstados_Transiciones[0]
+        estado = listaTransiciones[0]
+
+        for entrada in cadena:
+            if len(pila) == 1 and pila[0] == 'Z0' and entrada == '$':
+                self.desapilar(pila)
+                if estado in estadosAceptación:
+                    resultado = True
+                else:
+                    resultado = False
+                break
+
+            indice = 1
+            listaTrancionesEncontradasParaLaEntrada = []
+
+            while indice <= (len(listaTransiciones) - 1):
+                transicion = listaTransiciones[indice]
+                if transicion[0] == entrada:
+                    listaTrancionesEncontradasParaLaEntrada.append(transicion)
+                indice = indice + 1
+
+            if len(listaTrancionesEncontradasParaLaEntrada) == 0:
+                resultado = False
+                break
+            else:
+                aplicarTransicion = []
+                ok = True
+
+                for transicionEncontrada in listaTrancionesEncontradasParaLaEntrada:
+                    if ok:
+                        if len(pila) == 1 and pila[0] == 'Z0' and transicionEncontrada[1] == 'Z0':
+                            aplicarTransicion = transicionEncontrada
+                            ok = False
+                        else:
+                            aplicarTransicion = transicionEncontrada
+
+                if len(aplicarTransicion[2]) == 0 or aplicarTransicion[2] == 'lambda' or aplicarTransicion[2] == '' or aplicarTransicion[2] == "" or aplicarTransicion[2] == [''] or aplicarTransicion[2] == [""]:
+                    if len(pila) != 1:
+                        self.desapilar(pila)
+                        estado = aplicarTransicion[3]
+                    else:
+                        resultado = False
+                        break
+                else:
+                    verificar = self.desapilar(pila)
+                    if verificar == 'Z0' and 'Z0' in aplicarTransicion[2]:
+                        self.apilar('Z0', pila)
+                        cont = 0
+                        sacar = 0
+                        for zo in aplicarTransicion[2]:
+                            if zo == 'Z0':
+                                sacar = cont
+                            cont = cont + 1
+                        aplicarTransicion[2].pop(sacar)
+                    for i in aplicarTransicion[2]:
+                        self.apilar(i, pila)
+                    estado = aplicarTransicion[3]
+                    for proximaLista in listaEstados_Transiciones:
+                        if proximaLista[0] == estado:
+                            listaTransiciones = proximaLista
+
+        return resultado
+
+"""
+#Prueba implementado en la clase
+
+d=({'a': [('a', 'Z0', ['a', 'Z0'], 'a'), ('a', 'a', ['a', 'a','a'], 'a'), ('b', 'Z0', ['b','Z0'], 'b'),('b','a',['a','a','a'],'c')],
+           'b': [('$', 'Z0', [''], 'b'), ('c', 'b', [''], 'b')],
+           'c':[('$', 'Z0', [''], 'c'), ('c', 'a', [''], 'c')]})
+l=['b','c']
+prueba= AutomataPila(d,l)
+
+if (prueba.validar_cadena('aabccccc$')):
+    andaaaaa=1
+else:
+    no_andaaaa=2
+
+"""

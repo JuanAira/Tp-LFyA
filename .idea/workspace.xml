@@ -19,8 +19,13 @@
       <file leaf-file-name="grupo1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grupo1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="360" column="21" lean-forward="true" selection-start-line="360" selection-start-column="21" selection-end-line="360" selection-end-column="21" />
+            <state relative-caret-position="487">
+              <caret line="383" column="5" lean-forward="true" selection-start-line="383" selection-start-column="5" selection-end-line="383" selection-end-column="5" />
+              <folding>
+                <element signature="e#9205#9273#0" />
+                <element signature="e#9317#9553#0" />
+                <element signature="e#9615#9916#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,10 +50,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-25" />
+    <option name="y" value="10" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -167,7 +173,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985755" weight="0.14398943" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32905984" />
@@ -178,7 +183,7 @@
       <window_info id="Structure" order="1" sideWeight="0.50242716" side_tool="true" weight="0.1440846" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" sideWeight="0.5014245" side_tool="true" weight="0.1440846" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4990086" visible="true" weight="0.17094018" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4990086" weight="0.16951567" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -214,54 +219,44 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/grupo1.py</url>
           <line>238</line>
           <option name="timeStamp" value="378" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/grupo1.py</url>
           <line>223</line>
           <option name="timeStamp" value="379" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/grupo1.py</url>
           <line>224</line>
           <option name="timeStamp" value="380" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/grupo1.py</url>
           <line>225</line>
           <option name="timeStamp" value="381" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/grupo1.py</url>
           <line>226</line>
           <option name="timeStamp" value="382" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/grupo1.py</url>
           <line>227</line>
           <option name="timeStamp" value="383" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/grupo1.py</url>
           <line>228</line>
           <option name="timeStamp" value="384" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://$PROJECT_DIR$/grupo1.py</url>
           <line>229</line>
           <option name="timeStamp" value="385" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
-          <line>358</line>
-          <option name="timeStamp" value="516" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
-          <line>360</line>
-          <option name="timeStamp" value="570" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -271,7 +266,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="622" />
+      <option name="time" value="628" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -288,6 +283,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7040">
           <caret line="352" lean-forward="true" selection-start-line="352" selection-end-line="352" />
+          <folding>
+            <element signature="e#9205#9273#0" />
+            <element signature="e#9317#9553#0" />
+            <element signature="e#9615#9916#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -349,8 +349,13 @@
     <entry file="file://$PROJECT_DIR$/tp1.py" />
     <entry file="file://$PROJECT_DIR$/grupo1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="360" column="21" lean-forward="true" selection-start-line="360" selection-start-column="21" selection-end-line="360" selection-end-column="21" />
+        <state relative-caret-position="487">
+          <caret line="383" column="5" lean-forward="true" selection-start-line="383" selection-start-column="5" selection-end-line="383" selection-end-column="5" />
+          <folding>
+            <element signature="e#9205#9273#0" />
+            <element signature="e#9317#9553#0" />
+            <element signature="e#9615#9916#0" />
+          </folding>
         </state>
       </provider>
     </entry>
