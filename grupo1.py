@@ -282,9 +282,15 @@ def validar_cadena(cadena, lista):
     pila.append('Z0')
     estadosAceptación = lista
 
+    #listaEstados_Transiciones = descomprimirDiccionario(
+    #   {'a': [('(', 'Z0', ['(', 'Z0'], 'a'), ('(', '(', ['(', '('], 'a'), (')', '(', [''], 'b')],
+    #   'b': [(')', '(', [''], 'b'), ('$', 'Z0', ['Z0'], 'b')]})
+
     listaEstados_Transiciones = descomprimirDiccionario(
-        {'a': [('(', 'Z0', ['(', 'Z0'], 'a'), ('(', '(', ['(', '('], 'a'), (')', '(', [''], 'b')],
-         'b': [(')', '(', [''], 'b'), ('$', 'Z0', ['Z0'], 'b')]})
+        {'a': [('a', 'Z0', ['a', 'Z0'], 'a'), ('a', 'a', ['a', 'a','a'], 'a'), ('b', 'Z0', ['b','Z0'], 'b'),('b','a',['a','a','a'],'c')],
+         'b': [('$', 'Z0', [''], 'b'), ('c', 'b', [''], 'b')],
+         'c':[('$', 'Z0', [''], 'c'), ('c', 'a', [''], 'c')]})
+
     resultado = True
 
     listaTransiciones= listaEstados_Transiciones[0]
@@ -299,7 +305,7 @@ def validar_cadena(cadena, lista):
                 resultado=False
             break
 
-        indice=0
+        indice=1
         listaTrancionesEncontradasParaLaEntrada= []
 
         while indice <= (len(listaTransiciones)-1):
@@ -345,11 +351,14 @@ def validar_cadena(cadena, lista):
                 for i in aplicarTransicion[2]:
                     apilar(i,pila)
                 estado= aplicarTransicion[3]
+                for proximaLista in listaEstados_Transiciones:
+                    if proximaLista[0]==estado:
+                        listaTransiciones=proximaLista
 
 
     return  resultado
 
-s=validar_cadena('(())$',["b"])
+s=validar_cadena('aaabccccccc$',['b','c'])
 
 
 class AutomataPila:
